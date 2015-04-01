@@ -1,0 +1,29 @@
+<h1>Listing active_classes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @active_classes.each do |active_class| %>
+      <tr>
+        <td><%= active_class.name %></td>
+        <td><%= active_class.number %></td>
+        <td><%= active_class.user %></td>
+        <td><%= link_to 'Show', active_class %></td>
+        <td><%= link_to 'Edit', edit_active_class_path(active_class) %></td>
+        <td><%= link_to 'Destroy', active_class, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Active class', new_active_class_path %>
