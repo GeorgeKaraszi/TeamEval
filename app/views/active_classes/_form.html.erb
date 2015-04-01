@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
+    <%= select_tag(:user_id, options_for_select(@active_class.get_instructor))  %>
   </div>
   <div class="actions">
     <%= f.submit %>
