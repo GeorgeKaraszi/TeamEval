@@ -11,14 +11,14 @@
   </thead>
 
   <tbody>
-    <% @active_classes.each do |active_class| %>
+  <% @active_classes.each do |ac| %>
       <tr>
-        <td><%= active_class.name %></td>
-        <td><%= active_class.number %></td>
-        <td><%= active_class.user %></td>
-        <td><%= link_to 'Show', active_class %></td>
-        <td><%= link_to 'Edit', edit_active_class_path(active_class) %></td>
-        <td><%= link_to 'Destroy', active_class, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= ac.name %></td>
+        <td><%= ac.number %></td>
+        <td><%= ac.find_instructor(ac.user_id) %></td>
+        <td><%= link_to 'Show', ac %></td>
+        <td><%= link_to 'Edit', edit_active_class_path(ac) %></td>
+        <td><%= link_to 'Destroy', ac, method: :delete, data: {confirm: 'Are you sure?'} %></td>
       </tr>
     <% end %>
   </tbody>

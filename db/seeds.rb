@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.delete_all
+ActiveClass.delete_all
 
 User.create!(username: 'Student1',
               password: 'pass123',

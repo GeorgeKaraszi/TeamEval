@@ -1,0 +1,79 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+#layout {
+  #cssmenu {
+    float: left;
+    border-right-width: 4px;
+    border-right-style: solid;
+    border-right-color: #1b9bff;
+  }
+
+  #cssmenu {
+    height: 100vh;
+  }
+
+  #main {
+    padding-left: 1em;
+    padding-top: 1em;
+    background: white;
+    display: inline-table;
+    width: 100vh;
+    position: fixed;
+
+  }
+
+  table {
+    border-top: 1px dotted #595;
+    border-bottom: 1px dotted #595;
+    margin-bottom: 10px;
+  }
+}
+
+.te_form {
+  fieldset {
+    backgroud: #efe;
+
+    legend {
+      color: #dfd;
+      background: #3ea6ff;
+      font-family: sans-serif;
+      padding: 0.2em 1em;
+    }
+  }
+
+  form {
+    label {
+      width: 12em;
+      float: left;
+      text-align: left;
+      padding-top: 0.1em;
+      display: block;
+    }
+
+    select, textarea, input, {
+      margin-left: 0.5em;
+    }
+
+    .submit {
+      margin-left: 4em;
+    }
+
+    br {
+      display: none;
+    }
+
+  }
+}

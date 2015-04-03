@@ -12,7 +12,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @active_class.user %>
+  <%= @active_class.find_instructor(@active_class.user_id) %>
 </p>
 
 <%= link_to 'Edit', edit_active_class_path(@active_class) %> |

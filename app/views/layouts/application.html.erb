@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TeamEval</title>
+  <title>Team Evaluation Portal</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= controller.controller_name %>">
+<div id="layout">
 
-<%= yield %>
+  <div id="cssmenu">
+    <ul>
+      <li><%= link_to('Home', root_path) %></li>
+      <li><%= link_to('Active Class', active_classes_path) %></li>
+      <li><%= link_to('Create Users', users_path) %></li>
+    </ul>
+  </div>
+
+
+  <div id="main">
+    <%= yield %>
+  </div>
+
+</div>
 
 </body>
 </html>

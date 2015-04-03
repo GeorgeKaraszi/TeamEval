@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  usename: MyString
+  username: tUser1
   password_digest: <%= BCrypt::Password.create('secret') %>
-  real_name: MyString
-  type: 1
+  real_name: Bob Jones
+  id_type: 1
 
 two:
-  usename: MyString
+  username: tUser2
   password_digest: <%= BCrypt::Password.create('secret') %>
-  real_name: MyString
-  type: 1
+  real_name: Pro Fessor
+  id_type: 2
