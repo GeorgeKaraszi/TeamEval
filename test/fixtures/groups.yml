@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+group_1:
+  user: Student
+  team_name: test_team
+  active_class: TestClass
+
+group_2:
+  user: one
+  team_name: test_team_2
+  active_class: one

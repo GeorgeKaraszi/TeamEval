@@ -6,8 +6,27 @@ one:
   real_name: Bob Jones
   id_type: 1
 
-two:
+Student:
   username: tUser2
+  password_digest: <%= BCrypt::Password.create('secret') %>
+  real_name: Jimmy Johns
+  id_type: 1
+
+static_student:
+  id: 1
+  username: staticUser
+  password_digest: <%= BCrypt::Password.create('secret') %>
+  real_name: No Name Student
+  id_type: 1
+
+instructor:
+  username: iUser
+  password_digest: <%= BCrypt::Password.create('secret') %>
+  real_name: Dr Tree
+  id_type: 2
+
+instructor_2:
+  username: tUser3
   password_digest: <%= BCrypt::Password.create('secret') %>
   real_name: Pro Fessor
   id_type: 2

@@ -12,6 +12,9 @@ class ActiveClass < ActiveRecord::Base
     instructor.real_name unless instructor.nil?
   end
 
+  def get_instructor
+    User.find_by(id: self.user_id).real_name
+  end
 
   private
   def ensure_user_id_is_instructor

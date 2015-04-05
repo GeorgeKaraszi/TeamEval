@@ -3,9 +3,20 @@
 one:
   name: TClass
   number: 123Abc
-  user_id: two
+  user: instructor
 
-two:
+TestClass_1:
+  name: TClass2
+  number: C201
+  user: instructor_2
+
+TestClass_2:
   name: TClass2
   number: 124Abc
-  user_id: two
+  user: instructor
+
+static_class:
+  id: 1
+  name: Static Class
+  number: D201
+  user: instructor_2

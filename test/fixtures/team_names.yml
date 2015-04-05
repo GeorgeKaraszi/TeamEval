@@ -1,0 +1,14 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: TestTeam1
+
+test_team_2:
+  name: TestTeam2
+
+test_team:
+  name: Named Team Test
+
+static_team:
+  id: 1
+  name: Static Team

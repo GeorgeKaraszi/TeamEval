@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Name</th>
       <th>Number</th>
       <th>User</th>
@@ -13,9 +14,10 @@
   <tbody>
   <% @active_classes.each do |ac| %>
       <tr>
+        <td><%= ac.id %></td>
         <td><%= ac.name %></td>
         <td><%= ac.number %></td>
-        <td><%= ac.find_instructor(ac.user_id) %></td>
+        <td><%= ac.get_instructor %></td>
         <td><%= link_to 'Show', ac %></td>
         <td><%= link_to 'Edit', edit_active_class_path(ac) %></td>
         <td><%= link_to 'Destroy', ac, method: :delete, data: {confirm: 'Are you sure?'} %></td>

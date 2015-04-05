@@ -6,8 +6,15 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
 User.delete_all
 ActiveClass.delete_all
+TeamName.delete_all
+
+TeamName.create!(name: 'Team 1')
+TeamName.create!(name: 'Team 2')
+TeamName.create!(name: 'Team 3')
+
 
 User.create!(username: 'Student1',
               password: 'pass123',
@@ -34,3 +41,10 @@ User.create!(username: 'Student3',
               password_confirmation: 'pass123',
               real_name: 'Joe Student',
               id_type: 1)
+
+ActiveClass.create!(name: 'Test Class 1',
+                    number: 'C103',
+                    user_id: 3)
+ActiveClass.create!(name: 'Test Class 2',
+                    number: 'B123',
+                    user_id: 4)

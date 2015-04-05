@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :groups
+
+  resources :team_names
+
   get 'portal/index'
 
   resources :active_classes
