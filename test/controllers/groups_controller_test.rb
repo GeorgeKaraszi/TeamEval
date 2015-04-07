@@ -43,7 +43,9 @@ class GroupsControllerTest < ActionController::TestCase
   end
 
   test "should update group" do
-    patch :update, id: @group, group: {active_class_id: @group.active_class_id, team_name_id: @group.team_name_id, user_id: @group.user_id}
+    patch :update, id: @group, group: {active_class_id: @group.active_class_id,
+                                       team_name_id: @group.team_name_id,
+                                       user_id: @group.user_id}
     assert_response :success
   end
 
