@@ -2,7 +2,7 @@
   <%= form_for(@active_class) do |f| %>
       <% if @active_class.errors.any? %>
           <div id="error_explanation">
-            <h2><%= pluralize(@active_class.errors.count, "error") %> prohibited this active_class from being
+            <h2><%= pluralize(@active_class.errors.count, 'error') %> prohibited this active_class from being
               saved:</h2>
 
             <ul>
@@ -25,7 +25,7 @@
         </div>
         <div class="field">
           <%= f.label :user_id, 'Teacher:' %> <br>
-          <%= f.collection_select(:user_id, User.where(id_type: 2), :id, :real_name, {}, {:multiple => false}) %>
+          <%= f.collection_select(:user_id, User.where(id_type: 2), :id, :real_name, {}, {}) %>
 
         </div>
         <div class="actions">

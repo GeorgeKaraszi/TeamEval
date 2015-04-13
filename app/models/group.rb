@@ -3,8 +3,10 @@ class Group < ActiveRecord::Base
   belongs_to :team_name
   belongs_to :active_class
 
+  has_many(:users)
+
   validates :user_id, :team_name_id, :active_class_id, presence: true
-  validate :team_exists, :user_exists, :class_exists, :on => [:create, :update]
+  validate :team_exists, :user_exists, :class_exists, on: [:create, :update]
   validate :is_user_an_instructor
   validates_uniqueness_of :user_id, :scope => :active_class_id,
                           message: 'already belongs to a group in this class'
@@ -19,9 +21,20 @@ class Group < ActiveRecord::Base
     TeamName.find_by(id: self.team_name_id).name
   end
 
-  def get_active_class
+  def get_class_information_string
     currentClass = ActiveClass.find_by(id: self.active_class_id)
-    currentClass.name + '(' + currentClass.get_instructor + ')' unless currentClass.nil?
+    currentClass.name + ':' + currentClass.number + '(' +
+        currentClass.get_instructor + ')' unless currentClass.nil?
+  end
+
+  def get_basic_class_info
+    currentClass = ActiveClass.find_by(id: self.active_class_id)
+    currentClass.name + '(' + currentClass.number + ')'
+  end
+
+  def member_count
+    Group.where(active_class_id: self.active_class_id,
+                team_name_id: self.team_name_id).size
   end
 
   private

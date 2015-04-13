@@ -3,7 +3,7 @@
   <%= form_for(@group) do |f| %>
       <% if @group.errors.any? %>
           <div id="error_explanation">
-            <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+            <h2><%= pluralize(@group.errors.count, 'error') %> prohibited this group from being saved:</h2>
 
             <ul>
               <% @group.errors.full_messages.each do |message| %>
@@ -14,16 +14,16 @@
       <% end %>
 
       <div class="field">
-        <%= f.label :user_id %><br>
-        <%= f.text_field :user_id %>
+        <%= f.label :user_id, 'Student:' %><br>
+        <%= f.collection_select(:user_id, User.where(id_type: 1), :id, :real_name, {}, {}) %>
         </div>
       <div class="field">
-        <%= f.label :team_name_id %><br>
-        <%= f.text_field :team_name_id %>
+        <%= f.label :team_name_id, 'Team:' %><br>
+        <%= f.collection_select(:team_name_id, TeamName.all, :id, :name, {}, {}) %>
       </div>
       <div class="field">
-        <%= f.label :active_class_id %><br>
-        <%= f.text_field :active_class_id %>
+        <%= f.label(:active_class_id, 'Class') %><br>
+        <%= f.collection_select(:active_class_id, ActiveClass.all, :id, :name, {}, {}) %>
       </div>
       <div class="actions">
         <%= f.submit %>

@@ -1,0 +1,46 @@
+<h1>Welcome back <%= @user.real_name %></h1>
+
+
+<% @classes.each do |cc| %>
+    <table>
+      <thead>
+      <tr>
+        <b>Class:</b> <%= cc.get_class_info %> <br>
+        <%= link_to('Student list', "#group-#{cc.id}-expand", class: 'popup-modal') %> <br>
+        <%= link_to('Group summery', "#group-#{cc.id}", class: 'popup-modal') %>
+      </tr>
+
+      <tr>
+        <th>Problem</th>
+        <th>Description</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Number of completes</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>This is an example</td>
+        <td>Here is a long discription that is ment to see what happens if this collum is going to act funny or what
+          not. Random letters 232423jr2ofjdosijfowiejfoijeoirfjreorijfeoirjfoerijf4
+        </td>
+        <td>4-13-2015</td>
+        <td>4-14-2015</td>
+        <td>3</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div id="group-<%= cc.id %>" class="mfp-hide white-popup">
+      <p><a class="popup-modal-dismiss" href="#">Close</a></p>
+      <%= render :partial => 'group_list',
+                 :locals => {:classString => cc.get_class_info, :class_groups => cc.get_all_groups_summery} %>
+    </div>
+
+    <div id="group-<%= cc.id %>-expand" class="mfp-hide white-popup">
+      <p><a class="popup-modal-dismiss" href="#">Close</a></p>
+      <%= render :partial => 'group_list_expanded',
+                 :locals => {:classString => cc.get_class_info, :class_groups => cc.get_all_groups} %>
+    </div>
+    <br>
+<% end %>

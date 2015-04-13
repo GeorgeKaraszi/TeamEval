@@ -1,0 +1,23 @@
+<h1>List of user for <%= classString %></h1>
+
+<table>
+  <thead>
+  <tr>
+    <b>Number of groups:</b> <%= class_groups.size %>
+  </tr>
+  <tr>
+    <th>User</th>
+    <th>Number of students</th>
+  </tr>
+  </thead>
+
+
+  <tbody>
+  <% class_groups.each do |cg| %>
+      <tr>
+        <td><%= cg.get_team_name %></td>
+        <td><%= cg.member_count %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

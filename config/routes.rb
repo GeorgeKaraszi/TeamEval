@@ -1,9 +1,27 @@
 Rails.application.routes.draw do
+  get 'student/index'
+  get 'admin_portal' => 'admin#index'
+  get 'instructor_portal' => 'instructor#index'
+  get 'student_portal' => 'student#index'
+  get 'start_class' => 'active_classes#new'
+
+
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
+
+  get 'sessions/create'
+  get 'sessions/destroy'
+  get 'sessions/new'
+
+  get 'portal/index'
+
   resources :groups
 
   resources :team_names
-
-  get 'portal/index'
 
   resources :active_classes
 

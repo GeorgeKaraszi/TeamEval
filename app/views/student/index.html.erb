@@ -1,0 +1,27 @@
+<h1>Welcome Back <%= @user.real_name %></h1>
+
+
+<% @groups.each do |group| %>
+    <table>
+      <thead>
+      <tr>
+        <b>Class:</b> <%= group.get_basic_class_info %>
+      </tr>
+      <tr>
+        <b>Group:</b> <%= group.get_team_name %>
+      </tr>
+
+      <tr>
+        <th>Problem</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Completed</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      </tbody>
+    </table>
+
+<% end %>

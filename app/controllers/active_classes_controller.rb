@@ -4,7 +4,7 @@ class ActiveClassesController < ApplicationController
   # GET /active_classes
   # GET /active_classes.json
   def index
-    @active_classes = ActiveClass.all
+    @active_classes = ActiveClass.order(:user_id, :number)
   end
 
   # GET /active_classes/1

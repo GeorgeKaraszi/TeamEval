@@ -12,70 +12,30 @@
  *
  *= require_tree .
  *= require_self
+ *= require magnific-popup
  */
 #layout {
 
   background: #2d4259;
-  height: 100vh;
+  height: 100%;
+  min-height: 100%;
+
+  display: flex;
+  //height: 200vh;
+
+
   #cssmenu {
     float: left;
     border-right: 4px solid #1b9bff;
   }
 
   #cssmenu {
-    height: 100vh;
-  }
-
-  #main {
-    margin-top: 1em;
-    left: 45%;
-    top: 5%;
-    margin-right: -50%;
-
-    padding-top: 0.5em;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    color: #404040;
-    font: 14px/20px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    //display: inline;
-    display: inline-block;
-    position: absolute;
-
-    background: #f4f4f4;
-    border: 2px solid #909090;
-    border-radius: 3px;
-    -webkit-box-shadow: 10px 10px 37px 0 rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 37px 0 rgba(0, 0, 0, 0.75);
-    box-shadow: 10px 10px 37px 0 rgba(0, 0, 0, 0.75);
-
-    h1 {
-
-      line-height: 43px;
-      font-size: 19px;
-      font-weight: 500;
-      color: white;
-      color: rgba(255, 255, 255, 0.95);
-      text-align: center;
-      text-shadow: 0 1px rgba(0, 0, 0, 0.3);
-      background: #d7604b;
-      border-radius: 3px;
-      background-image: -webkit-linear-gradient(top, #dc745e, #d45742);
-      background-image: -moz-linear-gradient(top, #dc745e, #d45742);
-      background-image: -o-linear-gradient(top, #dc745e, #d45742);
-      background-image: linear-gradient(to bottom, #dc745e, #d45742);
-      -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3);
-      box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3);
-    }
-  }
-
-  table {
-    border-top: 1px dotted #595;
-    border-bottom: 1px dotted #595;
-    margin-bottom: 10px;
+    height: 150vh;
+    min-height: 100%;
   }
 }
 
-.te_form {
+.te_form, .white-popup .te_form {
   fieldset {
 
     legend {
@@ -89,19 +49,19 @@
   form {
 
     label {
-      width: 12em;
+      width: 8em;
       float: left;
       text-align: left;
-      padding-top: 0.1em;
+      padding-top: 0.5em;
       display: block;
     }
 
-    select, textarea, input, {
-      margin-left: 0.5em;
+    select {
+      width: 110px;
     }
-
-    .submit {
-      margin-left: 4em;
+    select:focus {
+      min-width: 100px;
+      width: auto;
     }
 
     br {
@@ -120,7 +80,9 @@
       font-weight: 500;
       background: none;
       border: 0;
-      border-bottom: 2px solid black;
+      border-left: 1px dashed #1e9ce6;
+      border-bottom: 1px solid black;
+      margin-left: -1em;
     }
 
     [type^="text"]:focus, [type ^= "password"]:focus {
@@ -130,6 +92,11 @@
     }
 
     [type^="submit"] {
+
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+
       height: 32px;
       font-size: 16px;
       font-weight: bold;
@@ -161,3 +128,68 @@
 
   }
 }
+
+#layout #main, .white-popup {
+  color: #404040;
+  font: 14px/20px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: #f4f4f4;
+  border: 2px solid #909090;
+  border-radius: 3px;
+  -webkit-box-shadow: 10px 10px 37px 0 rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 37px 0 rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 37px 0 rgba(0, 0, 0, 0.75);
+
+  h1 {
+
+    line-height: 43px;
+    font-size: 19px;
+    font-weight: 500;
+    color: white;
+    color: rgba(255, 255, 255, 0.95);
+    text-align: center;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+    background: #d7604b;
+    border-radius: 3px;
+    background-image: -webkit-linear-gradient(top, #dc745e, #d45742);
+    background-image: -moz-linear-gradient(top, #dc745e, #d45742);
+    background-image: -o-linear-gradient(top, #dc745e, #d45742);
+    background-image: linear-gradient(to bottom, #dc745e, #d45742);
+    -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+}
+
+#layout #main {
+  //Center this mofo!
+  margin-top: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  float: right;
+
+  //Display this mofo correctly
+  display: inline-block;
+  height: 100%;
+  max-width: 850px;
+
+  //Fancy display
+  padding-top: 0.5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.white-popup {
+  position: fixed;
+
+  margin-top: 1em;
+  left: 40%;
+  top: 5%;
+  margin-right: -50%;
+
+  background: #FFF;
+  padding: 10px;
+  width: auto;
+
+}
+
+

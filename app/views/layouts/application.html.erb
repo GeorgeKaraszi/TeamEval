@@ -11,10 +11,40 @@
 
   <div id="cssmenu">
     <ul>
+      <!-- Method:get on link_to's where required to get CSS popup window to work correctly.
+           Without it, the popup wouldn't show -->
+      <% if @user.nil? %>
+          <li><%= link_to('Login', login_path) %> </li>
+      <% else %>
+          <% if @user.isStudent %>
+              <li><%= link_to('Home | View Classes', student_portal_path) %> </li>
+              <li><%= link_to('Join Group', groups_path) %> </li>
+              <li><%= link_to('Logout', logout_path, method: :delete) %>< /li>
+          <% else %>
+              <% if @user.isInstructor %>
+                  <li><%= link_to('My Classes', instructor_portal_url, method: :get) %> </li>
+                  <li><%= link_to('Create New Problem', root_path) %> </li>
+                  <li><%= link_to('Create Class', start_class_path) %> </li>
+                  <li><%= link_to('Logout', logout_path, method: :delete) %> </li>
+              <% else %>
+                  <% if @user.isAdmin %>
+                      <li><%= link_to('Home', admin_portal_path) %> </li>
+                      <li><%= link_to('Active Class', active_classes_path) %> </li>
+                      <li><%= link_to('Users', users_path) %> </li>
+                      <li><%= link_to('Groups', groups_path) %>< /li>
+                      <li><%= link_to('Logout', logout_path, method: :delete) %> </li>
+                  <% end %>
+              <% end %>
+          <% end %>
+      <% end %>
+
+      <li>-----Will be removed after development----</li>
       <li><%= link_to('Home', root_path) %></li>
-      <li><%= link_to('Active Class', active_classes_path) %></li>
-      <li><%= link_to('Create Users', users_path) %></li>
-      <li><%= link_to('Create Groups', groups_path) %></li>
+      <li><%= link_to('Active Class', active_classes_path) %> </li>
+      <li><%= link_to('Create Users', users_path) %> </li>
+      <li><%= link_to('Create Groups', groups_path) %> </li>
+      <li><%= link_to('Login', login_path) %> </li>
+      <li><%= link_to('Logout', logout_path, method: :delete) %> </li>
     </ul>
   </div>
 

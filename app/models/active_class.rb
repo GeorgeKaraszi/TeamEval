@@ -1,6 +1,5 @@
 class ActiveClass < ActiveRecord::Base
   belongs_to :user
-  has_many :users
 
   validates :user_id, presence: true
   validate :ensure_user_id_is_instructor
@@ -16,6 +15,24 @@ class ActiveClass < ActiveRecord::Base
     User.find_by(id: self.user_id).real_name
   end
 
+  def get_all_groups_summery
+    Group.where(active_class_id: self.id).to_a.uniq { |g| g.team_name_id }
+  end
+
+  def get_all_groups
+    Group.order(:team_name_id, :user_id).where(active_class_id: self.id)
+  end
+
+
+  def get_all_users
+    User.where(id: get_all_groups.id)
+  end
+
+  def get_class_info
+    self.name + '(' + self.number + ')'
+  end
+
+
   private
   def ensure_user_id_is_instructor
     user = User.find_by(id: self.user_id)
@@ -30,6 +47,6 @@ class ActiveClass < ActiveRecord::Base
       return false
     end
 
-    return true
+    true
   end
 end

@@ -30,3 +30,9 @@ instructor_2:
   password_digest: <%= BCrypt::Password.create('secret') %>
   real_name: Pro Fessor
   id_type: 2
+
+admin:
+  username: adminUser
+  password_digest: <%= BCrypt::Password.create('secret') %>
+  real_name: Super Admin
+  id_type: 3
