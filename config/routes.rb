@@ -27,6 +27,10 @@ Rails.application.routes.draw do
 
   resources :users
 
+  resources :assignments
+
+  resources :submissions
+
   root 'portal#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

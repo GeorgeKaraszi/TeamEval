@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150403142642) do
+ActiveRecord::Schema.define(version: 20150413225419) do
 
   create_table "active_classes", force: true do |t|
     t.string "name"
@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(version: 20150403142642) do
   end
 
   add_index "active_classes", ["user_id"], name: "index_active_classes_on_user_id"
+
+  create_table "assignments", force: true do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "active_class_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assignments", ["active_class_id"], name: "index_assignments_on_active_class_id"
 
   create_table "groups", force: true do |t|
     t.integer "user_id"
@@ -34,6 +46,24 @@ ActiveRecord::Schema.define(version: 20150403142642) do
   add_index "groups", ["active_class_id"], name: "index_groups_on_active_class_id"
   add_index "groups", ["team_name_id"], name: "index_groups_on_team_name_id"
   add_index "groups", ["user_id"], name: "index_groups_on_user_id"
+
+  create_table "submissions", force: true do |t|
+    t.integer "active_class_id"
+    t.integer "group_id"
+    t.integer "user_id"
+    t.string "answer"
+    t.boolean "complete", default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer "team_name_id"
+    t.integer "assignment_id"
+  end
+
+  add_index "submissions", ["active_class_id"], name: "index_submissions_on_active_class_id"
+  add_index "submissions", ["assignment_id"], name: "index_submissions_on_assignment_id"
+  add_index "submissions", ["group_id"], name: "index_submissions_on_group_id"
+  add_index "submissions", ["team_name_id"], name: "index_submissions_on_team_name_id"
+  add_index "submissions", ["user_id"], name: "index_submissions_on_user_id"
 
   create_table "team_names", force: true do |t|
     t.string "name"

@@ -1,0 +1,42 @@
+<div class="te_form">
+  <%= form_for(@assignment) do |f| %>
+      <% if @assignment.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@assignment.errors.count, "error") %> prohibited this submission from being saved:</h2>
+
+            <ul>
+              <% @assignment.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <fieldset>
+        <legend>Enter Active Class information</legend>
+
+        <div class="field">
+          <%= f.label :name %><br>
+          <%= f.text_field :name %>
+        </div>
+        <div class="field">
+          <%= f.label :description %>
+          <%= f.text_area :description %>
+        </div>
+        <div class="field">
+          <%= f.label :active_class_id %><br>
+          <%= f.collection_select :active_class_id, ActiveClass.all, :id, :name, {:prompt => 'Select User'} %>
+        </div>
+        <div class="field">
+          <%= f.label :start_time %><br>
+          <%= f.datetime_select :start_time %>
+        </div>
+        <div class="field">
+          <%= f.label :end_time %><br>
+          <%= f.datetime_select :end_time %>
+        </div>
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+      </fieldset>
+  <% end %>
+</div>

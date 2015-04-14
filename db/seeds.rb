@@ -48,3 +48,4 @@ ActiveClass.create!(name: 'Test Class 1',
 ActiveClass.create!(name: 'Test Class 2',
                     number: 'B123',
                     user_id: 4)
+
