@@ -1,0 +1,42 @@
+<div class="te_form">
+  <%= form_for(@submission) do |f| %>
+      <% if @submission.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@submission.errors.count, "error") %> prohibited this submission from being saved:</h2>
+
+            <ul>
+              <% @submission.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <fieldset>
+        <legend>Enter Assignment Submission information</legend>
+
+        <div class="field">
+          <%= f.label :active_class_id %><br>
+          <%= f.collection_select :active_class_id, ActiveClass.all, :id, :name, {:prompt => 'Select Class'} %>
+        </div>
+        <div class="field">
+          <%= f.label :group_id %>
+          <%= f.collection_select :group_id, Group.all, :id, :id, {:prompt => 'Select Group'} %>
+        </div>
+        <div class="field">
+          <%= f.label :user_id %><br>
+          <%= f.collection_select :user_id, User.all, :id, :username, {:prompt => 'Select User'} %>
+        </div>
+        <div class="field">
+          <%= f.label :assignment_id %><br>
+          <%= f.collection_select :assignment_id, Assignment.all, :id, :name, {:prompt => 'Select Assignment'} %>
+        </div>
+        <div class="field">
+          <%= f.label :answer %><br>
+          <%= f.text_field :answer %>
+        </div>
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+      </fieldset>
+  <% end %>
+</div>

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Active class:</strong>
+  <%= @submission.get_active_class %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @submission.get_group_information %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @submission.get_user_information %>
+</p>
+
+<p>
+  <strong>Assignment:</strong>
+  <%= @submission.get_assignment_information %>
+</p>
+
+<p>
+  <strong>Answer:</strong>
+  <%= @submission.answer %>
+</p>
+
+<p>
+  <strong>Complete:</strong>
+  <%= @submission.complete %>
+</p>
+
+<%= link_to 'Edit', edit_submission_path(@submission) %> |
+<%= link_to 'Back', submissions_path %>
