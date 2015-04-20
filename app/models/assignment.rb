@@ -1,9 +1,12 @@
 class Assignment < ActiveRecord::Base
+  belongs_to :submission
+
   has_many :submissions
   belongs_to :active_class
 
   validates :name, :description, :active_class_id, :start_time, :end_time, presence: true
   validate :active_class_exists, :end_not_before_start, :start_time_not_before_current_date, :on => [:create, :update]
+
 
   def get_class_name
     ActiveClass.find_by(id: self.active_class_id).name
@@ -15,6 +18,20 @@ class Assignment < ActiveRecord::Base
 
   def formatted_end_time
     end_time.strftime('%m/%d (%I:%m%p)')
+  end
+
+  def has_to_do_problem(group_id)
+    group = Group.find_by_id(group_id)
+    amount = Submission.where(active_class_id: self.active_class_id,
+                              team_name_id: group.team_name_id,
+                              assignment_id: self.id).size
+
+    if amount < group.member_count
+      return true
+    end
+
+    false
+
   end
 
   def active_class_exists

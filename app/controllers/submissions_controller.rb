@@ -1,10 +1,23 @@
 class SubmissionsController < ApplicationController
+  before_action :authorize
+
+  before_action :set_user
   before_action :set_submission, only: [:show, :edit, :update, :destroy]
+  before_action :set_assignment, only: [:sub_assignment, :new]
 
   # GET /submissions
   # GET /submissions.json
   def index
     @submissions = Submission.all
+  end
+
+  # GET /submissions/1/sub_assignment
+  def sub_assignment
+    @submission = Submission.new
+  end
+
+  def create_submission
+
   end
 
   # GET /submissions/1
@@ -62,6 +75,15 @@ class SubmissionsController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = User.find_by(id: session[:user_id])
+  end
+
+  def set_assignment
+    @assignment = Assignment.find(params[:id])
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_submission
     @submission = Submission.find(params[:id])
@@ -69,6 +91,7 @@ class SubmissionsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def submission_params
-    params.require(:submission).permit(:active_class_id, :group_id, :user_id, :assignment_id, :answer, :complete)
+    params.require(:submission).permit(:active_class_id, :group_id, :team_name_id, :user_id, :assignment_id,
+                                       :answer1, :answer2, :answer3, :answer4, :answer5, :comment, :target_user_id)
   end
 end

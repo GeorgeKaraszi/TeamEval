@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150413225419) do
+ActiveRecord::Schema.define(version: 20150419145207) do
 
   create_table "active_classes", force: true do |t|
     t.string "name"
@@ -51,12 +51,17 @@ ActiveRecord::Schema.define(version: 20150413225419) do
     t.integer "active_class_id"
     t.integer "group_id"
     t.integer "user_id"
-    t.string "answer"
-    t.boolean "complete", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "team_name_id"
     t.integer "assignment_id"
+    t.string "answer1"
+    t.integer "answer2"
+    t.integer "answer3"
+    t.integer "answer4"
+    t.integer "answer5"
+    t.string "comment"
+    t.integer "target_user_id"
   end
 
   add_index "submissions", ["active_class_id"], name: "index_submissions_on_active_class_id"

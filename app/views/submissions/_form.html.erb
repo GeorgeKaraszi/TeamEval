@@ -15,24 +15,47 @@
         <legend>Enter Assignment Submission information</legend>
 
         <div class="field">
-          <%= f.label :active_class_id %><br>
-          <%= f.collection_select :active_class_id, ActiveClass.all, :id, :name, {:prompt => 'Select Class'} %>
+          <%= f.label :target_user_id, 'Who to eval:' %> <br>
+          <%= f.collection_select(:target_user_id, @submission.users_that_need_eval(@assignment.id, 1), :id, :real_name, {}, {}) %>
         </div>
         <div class="field">
-          <%= f.label :group_id %>
-          <%= f.collection_select :group_id, Group.all, :id, :id, {:prompt => 'Select Group'} %>
+          <%= f.label :answer1, 'Url to project' %><br>
+          <%= f.text_field :answer1 %>
         </div>
         <div class="field">
-          <%= f.label :user_id %><br>
-          <%= f.collection_select :user_id, User.all, :id, :username, {:prompt => 'Select User'} %>
+          <%= f.label :answer2, 'What was the expertise at the start of the project' %>
+          <%= f.radio_button :answer2, 1 %><%= f.label 'None' %>
+          <%= f.radio_button :answer2, 2 %><%= f.label 'Some' %>
+          <%= f.radio_button :answer2, 3 %><%= f.label 'Moderate' %>
+          <%= f.radio_button :answer2, 4 %><%= f.label 'Good' %>
+          <%= f.radio_button :answer2, 5 %><%= f.label 'Expert' %>
         </div>
         <div class="field">
-          <%= f.label :assignment_id %><br>
-          <%= f.collection_select :assignment_id, Assignment.all, :id, :name, {:prompt => 'Select Assignment'} %>
+          <%= f.label :answer3, 'How improvement in expertise was acquired?' %><br>
+          <%= f.radio_button :answer3, 1 %><%= f.label 'None' %>
+          <%= f.radio_button :answer3, 2 %><%= f.label 'Some' %>
+          <%= f.radio_button :answer3, 3 %><%= f.label 'Moderate' %>
+          <%= f.radio_button :answer3, 4 %><%= f.label 'Good' %>
+          <%= f.radio_button :answer3, 5 %><%= f.label 'Expert' %>
         </div>
         <div class="field">
-          <%= f.label :answer %><br>
-          <%= f.text_field :answer %>
+          <%= f.label :answer4, 'How was the team interaction?' %>
+          <%= f.radio_button :answer4, 1 %><%= f.label 'Loner' %>
+          <%= f.radio_button :answer4, 2 %><%= f.label 'Did something' %>
+          <%= f.radio_button :answer4, 3 %><%= f.label 'Was okay to work with' %>
+          <%= f.radio_button :answer4, 4 %><%= f.label 'Hard worker' %>
+          <%= f.radio_button :answer4, 5 %><%= f.label 'Real good commitment' %>
+        </div>
+        <div class="field">
+          <%= f.label :answer5, 'What percentage of project did this member contribute?' %><br>
+          Current claimed contribute for this assignment: <%= @submission.contribute_tally(@assignment.id, 1) %>
+          <%= f.text_field :answer5 %>
+
+        </div>
+
+        <div class="field">
+          <%= f.label :comment, 'Add comment' %><br>
+          <%= f.text_field :comment %>
         </div>
         <div class="actions">
           <%= f.submit %>

@@ -3,10 +3,54 @@ class Submission < ActiveRecord::Base
   belongs_to :group
   belongs_to :user
   belongs_to :assignment
+  belongs_to :target_user_id, :class_name => 'User'
 
-  validates :active_class_id, :group_id, :user_id, :assignment_id, presence: true
-  validate :user_is_in_group, :group_is_in_class, :assignment_exists, :on => [:create, :update]
-  validate :form_is_completely_filled, :on => [:create, :update]
+  validates :answer1, presence: true
+  #validate :form_is_completely_filled, :on => [:create, :update]
+
+  public
+
+
+  def contribute_tally(ass_id, group_id)
+    user = get_user_from_group(group_id)
+
+    current_submissions = Submission.where(user_id: user.id, assignment_id: ass_id)
+    percent = 0
+
+    current_submissions.each do |s|
+      percent += s.answer5
+    end
+
+
+    return percent
+
+  end
+
+  def users_that_need_eval(ass_id, group_id)
+    target_group = Group.find_by(group_id)
+
+    users_evaluated = Submission.where(user_id: target_group.user_id,
+                                       assignment_id: ass_id).pluck(:target_user_id)
+
+    group_user_id_list = Group.where(active_class_id: target_group.active_class_id,
+                                     team_name_id: target_group.team_name_id).pluck(:user_id)
+
+    if users_evaluated.size <= 0
+      return User.where(id: group_user_id_list)
+    end
+
+    needs_to_be_eval = []
+
+    users_evaluated.each do |u|
+      unless group_user_id_list.include?(u)
+        needs_to_be_eval << u
+      end
+    end
+
+    return User.where(id: needs_to_be_eval)
+
+
+  end
 
   def get_active_class
     currentClass = ActiveClass.find_by(id: self.active_class_id)
@@ -26,6 +70,15 @@ class Submission < ActiveRecord::Base
   def get_assignment_information
     assignment = Assignment.find_by(id: self.assignment_id)
     assignment.name unless assignment.nil?
+  end
+
+
+  private
+
+  def get_user_from_group(group_id)
+    group = Group.find_by(group_id)
+
+    User.find_by(group.user_id)
   end
 
   def group_exists

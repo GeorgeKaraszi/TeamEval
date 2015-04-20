@@ -13,14 +13,30 @@
 
       <tr>
         <th>Problem</th>
+        <th>Description</th>
         <th>Start Time</th>
         <th>End Time</th>
         <th>Completed</th>
-        <th colspan="3"></th>
       </tr>
       </thead>
 
       <tbody>
+      <% group.get_class_problems.each do |p| %>
+          <tr>
+            <td><%= p.name %></td>
+            <td><%= p.description %></td>
+            <td><%= p.formatted_start_time %></td>
+            <td><%= p.formatted_end_time %></td>
+            <td>
+              <% if p.has_to_do_problem(group.id) %>
+                  <%= link_to 'Yes', sendassignment_path(p.id, :groupid => group.id) %>
+              <% else %>
+                  No
+              <% end %>
+            </td>
+          </tr>
+
+      <% end %>
       </tbody>
     </table>
 

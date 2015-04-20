@@ -22,15 +22,18 @@ class Group < ActiveRecord::Base
   end
 
   def get_class_information_string
-    currentClass = ActiveClass.find_by(id: self.active_class_id)
-    currentClass.name + ':' + currentClass.number + '(' +
-        currentClass.get_instructor + ')' unless currentClass.nil?
+    get_class_room.name + ':' + get_class_room.number + '(' +
+        get_class_room.get_instructor + ')' unless get_class_room.nil?
   end
 
   def get_basic_class_info
-    currentClass = ActiveClass.find_by(id: self.active_class_id)
-    currentClass.name + '(' + currentClass.number + ')'
+    get_class_room.name + '(' + get_class_room.number + ')'
   end
+
+  def get_class_problems
+    get_class_room.get_class_problems
+  end
+
 
   def member_count
     Group.where(active_class_id: self.active_class_id,
@@ -38,6 +41,10 @@ class Group < ActiveRecord::Base
   end
 
   private
+
+  def get_class_room
+    ActiveClass.find_by(id: self.active_class_id)
+  end
 
   def is_user_an_instructor
     errors.add(:base, 'An instructor cannot be part of a group') unless User.find_by(id: self.user_id, id_type: 2).nil?
@@ -47,7 +54,6 @@ class Group < ActiveRecord::Base
     errors.add(:base, 'Team does not exist!') unless TeamName.find_by(id: self.team_name_id)
   end
 
-  2
 
   def user_exists
     errors.add(:base, 'User does not exist!') unless User.find_by(id: self.user_id)

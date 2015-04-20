@@ -6,6 +6,15 @@ Rails.application.routes.draw do
   get 'start_class' => 'active_classes#new'
 
 
+  controller :submissions do
+    get ':id/sub_assignment', to: :new, as: 'sendassignment'
+    post ':id/sub_assignment', to: :create
+  end
+  #controller :submissions do
+  # get ':id/sub_assignment' => :sub_assignment
+  #post 'sub_assignment' => :create
+  #end
+
   controller :sessions do
     get 'login' => :new
     post 'login' => :create

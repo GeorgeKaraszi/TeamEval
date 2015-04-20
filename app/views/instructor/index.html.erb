@@ -19,15 +19,15 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>This is an example</td>
-        <td>Here is a long discription that is ment to see what happens if this collum is going to act funny or what
-          not. Random letters 232423jr2ofjdosijfowiejfoijeoirfjreorijfeoirjfoerijf4
-        </td>
-        <td>4-13-2015</td>
-        <td>4-14-2015</td>
-        <td>3</td>
-      </tr>
+      <% cc.get_class_problems.each do |p| %>
+          <tr>
+            <td><%= p.name %></td>
+            <td><%= p.description %></td>
+            <td><%= p.formatted_start_time %></td>
+            <td><%= p.formatted_end_time %></td>
+            <td>0</td>
+          </tr>
+      <% end %>
       </tbody>
     </table>
 

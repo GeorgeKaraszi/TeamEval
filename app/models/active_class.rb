@@ -32,6 +32,10 @@ class ActiveClass < ActiveRecord::Base
     self.name + '(' + self.number + ')'
   end
 
+  def get_class_problems
+    Assignment.where(active_class_id: self.id)
+  end
+
 
   private
   def ensure_user_id_is_instructor
