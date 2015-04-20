@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150419145207) do
+ActiveRecord::Schema.define(version: 20150420194018) do
 
   create_table "active_classes", force: true do |t|
     t.string "name"
@@ -50,23 +50,24 @@ ActiveRecord::Schema.define(version: 20150419145207) do
   create_table "submissions", force: true do |t|
     t.integer "active_class_id"
     t.integer "group_id"
-    t.integer "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer "team_name_id"
+    t.integer "user_id"
     t.integer "assignment_id"
-    t.string "answer1"
+    t.integer "target_user_id"
+    t.text "group_url"
+    t.integer "answer1"
     t.integer "answer2"
     t.integer "answer3"
     t.integer "answer4"
-    t.integer "answer5"
-    t.string "comment"
-    t.integer "target_user_id"
+    t.text "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "submissions", ["active_class_id"], name: "index_submissions_on_active_class_id"
   add_index "submissions", ["assignment_id"], name: "index_submissions_on_assignment_id"
   add_index "submissions", ["group_id"], name: "index_submissions_on_group_id"
+  add_index "submissions", ["target_user_id"], name: "index_submissions_on_target_user_id"
   add_index "submissions", ["team_name_id"], name: "index_submissions_on_team_name_id"
   add_index "submissions", ["user_id"], name: "index_submissions_on_user_id"
 
