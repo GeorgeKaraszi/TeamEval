@@ -13,10 +13,21 @@
       <% end %>
       <fieldset>
         <legend>Enter Assignment Submission information</legend>
-
+        <div class="field">
+          <%= f.label :active_class_id, 'Target Class' %><br>
+          <%= f.number_field :active_class_id, :value => @assignment.active_class_id, :readonly => true %>
+        </div>
+        <div class="field">
+          <%= f.label :group_id, 'Target Group' %><br>
+          <%= f.number_field :group_id, :value => params[:usergroup].to_i, :readonly => true %>
+        </div>
+        <div class="field">
+          <%= f.label :user_id, 'Current User' %><br>
+          <%= f.number_field :user_id, :value => @user.id, :readonly => true %>
+        </div>
         <div class="field">
           <%= f.label :target_user_id, 'Who to eval:' %> <br>
-          <%= f.collection_select(:target_user_id, @submission.users_that_need_eval(@assignment.id, 1), :id, :real_name, {}, {}) %>
+          <%= f.collection_select(:target_user_id, @submission.users_that_need_eval(@assignment.id, params[:usergroup]), :id, :real_name, {}, {}) %>
         </div>
         <div class="field">
           <%= f.label :answer1, 'Url to project' %><br>

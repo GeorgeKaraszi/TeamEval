@@ -29,7 +29,7 @@
             <td><%= p.formatted_end_time %></td>
             <td>
               <% if p.has_to_do_problem(group.id) %>
-                  <%= link_to 'Yes', sendassignment_path(p.id, :groupid => group.id) %>
+                  <%= link_to 'Yes', sendassignment_path(p.id, :usergroup => group.id) %>
               <% else %>
                   No
               <% end %>

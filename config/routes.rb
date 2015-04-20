@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'instructor_portal' => 'instructor#index'
   get 'student_portal' => 'student#index'
   get 'start_class' => 'active_classes#new'
+  get 'test' => 'submissions#test'
 
 
   controller :submissions do

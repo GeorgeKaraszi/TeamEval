@@ -27,7 +27,7 @@ class Submission < ActiveRecord::Base
   end
 
   def users_that_need_eval(ass_id, group_id)
-    target_group = Group.find_by(group_id)
+    target_group = Group.find_by(group_id.to_i)
 
     users_evaluated = Submission.where(user_id: target_group.user_id,
                                        assignment_id: ass_id).pluck(:target_user_id)

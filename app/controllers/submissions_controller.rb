@@ -9,6 +9,7 @@ class SubmissionsController < ApplicationController
   # GET /submissions.json
   def index
     @submissions = Submission.all
+    @users = User.all
   end
 
   # GET /submissions/1/sub_assignment
