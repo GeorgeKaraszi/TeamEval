@@ -28,11 +28,11 @@
         </div>
         <div class="field">
           <%= f.label :start_time %><br>
-          <%= f.datetime_select :start_time %>
+          <%= f.datetime_select :start_time, order: [:month, :day, :year], :default => {:hour => 00, :minute => 00} %>
         </div>
         <div class="field">
           <%= f.label :end_time %><br>
-          <%= f.datetime_select :end_time %>
+          <%= f.datetime_select :end_time, order: [:month, :day, :year], :default => {:hour => 00, :minute => 00} %>
         </div>
         <div class="actions">
           <%= f.submit %>

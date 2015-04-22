@@ -3,9 +3,11 @@ class Submission < ActiveRecord::Base
   belongs_to :group
   belongs_to :user
   belongs_to :assignment
+  belongs_to :target_user, class_name: "User", foreign_key: "target_user_id"
 
-  validates :answer1, presence: true
-  #validate :form_is_completely_filled, :on => [:create, :update]
+  validates :answer1, :answer2, :answer3, :answer4, presence: true
+  validates :group_url, :format => URI::regexp(%w(http https))
+  validate :distribution_not_exceed_100, :on => [:create, :update]
 
   public
 
@@ -61,16 +63,18 @@ class Submission < ActiveRecord::Base
     percent = 0
 
     current_submissions.each do |s|
-      percent += s.answer5
+      percent += s.answer4
     end
+    percent.to_int
+  end
 
-
-    return percent
-
+  def tally_remainder(ass_id, user_id)
+    percent = contribute_tally(ass_id, user_id)
+    100 - percent
   end
 
   def users_that_need_eval(ass_id, group_id)
-    target_group = Group.find(group_id.to_i)
+    target_group = Group.find_by(group_id.to_i)
 
     users_evaluated = Submission.where(user_id: target_group.user_id,
                                        assignment_id: ass_id).pluck(:target_user_id)
@@ -84,20 +88,43 @@ class Submission < ActiveRecord::Base
 
     needs_to_be_eval = []
 
-    users_evaluated.each do |u|
-      unless group_user_id_list.include?(u)
+    group_user_id_list.each do |u|
+      unless users_evaluated.include?(u)
         needs_to_be_eval << u
       end
     end
 
     return User.where(id: needs_to_be_eval)
 
+  end
 
+  def distribution_not_exceed_100
+      errors.add(:base, 'Group contributions cannot exceed 100%') unless contribute_tally(self.assignment_id, self.user_id) + self.answer4 <= 100
+  end
+
+  def get_current_group
+    current_group = Group.find_by(user_id: self.user.id)
+    current_group unless current_group.nil?
+  end
+
+  def get_team_name
+    current_team = TeamName.find_by(id: get_current_group.team_name_id)
+    current_team unless current_team.nil?
   end
 
   def get_active_class
-    currentClass = ActiveClass.find_by(id: self.active_class_id)
-    currentClass.name + '(' + currentClass.get_instructor + ')' unless currentClass.nil?
+    current_class = ActiveClass.find_by(id: get_current_group.active_class_id)
+    current_class unless current_class.nil?
+  end
+
+  def get_assignment
+    current_assignment = Assignment.find_by(active_class_id: get_active_class.id)
+    current_assignment unless current_assignment.nil?
+  end
+
+  def get_target_user
+    current_target_user = User.find_by(id: self.target_user_id)
+    current_target_user unless current_target_user.nil?
   end
 
   def get_group_information
@@ -121,53 +148,5 @@ class Submission < ActiveRecord::Base
   def get_user_from_group(group_id)
     group = Group.find_by(group_id)
 
-    User.find_by(group.user_id)
+    User.find_by(id: group.user_id)
   end
-
-  def group_exists
-    errors.add(:base, 'Group does not exist!') unless Group.find_by(id: self.group_id)
-  end
-
-  def user_exists
-    errors.add(:base, 'User does not exist!') unless User.find_by(id: self.user_id)
-  end
-
-  def class_exists
-    errors.add(:base, 'Class does not exist!') unless ActiveClass.find_by(id: self.active_class_id)
-  end
-
-  def assignment_exists
-    errors.add(:base, 'Assignment does not exist!') unless Assignment.find_by(id: self.assignment_id)
-  end
-
-  def user_is_in_group
-    currentGroup = Group.find_by(id: self.group_id)
-    currentUser = User.find_by(id: self.user_id)
-    if (currentGroup == nil || currentUser == nil)
-      group_exists
-      user_exists
-    else
-      errors.add(:base, 'User is not in this group!') unless currentGroup.user_id == currentUser.id
-    end
-  end
-
-  def group_is_in_class
-    currentGroup = Group.find_by(id: self.group_id)
-    currentClass = ActiveClass.find_by(id: self.active_class_id)
-    if currentGroup.nil? || currentClass.nil?
-      group_exists
-      class_exists
-    else
-      errors.add(:base, 'Group is not in this class!') unless currentClass.id == currentGroup.active_class_id
-    end
-  end
-
-  def form_is_completely_filled
-    if self.answer.nil? || self.answer == ''
-      self.complete = false
-    else
-      self.complete = true
-    end
-  end
-
-end

@@ -10,33 +10,42 @@
       <tr>
         <b>Group:</b> <%= group.get_team_name %>
       </tr>
+      <% unless group.get_class_assignments.size == 0 then %>
+          <tr>
+            <b>Evaluations Left:</b> <%= group.users_that_need_eval(group.get_assignment_id, group.user_id).size %>
+          </tr>
 
-      <tr>
-        <th>Problem</th>
-        <th>Description</th>
-        <th>Start Time</th>
-        <th>End Time</th>
-        <th>Completed</th>
-      </tr>
+          <tr>
+            <th>Problem</th>
+            <th>Description</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th></th>
+          </tr>
+        <% else %>
+          <tr>
+            <th><label>No Assignments Available</label></th>
+          </tr>
+    <% end %>
       </thead>
 
       <tbody>
-      <% group.get_class_problems.each do |p| %>
-          <tr>
-            <td><%= p.name %></td>
-            <td><%= p.description %></td>
-            <td><%= p.formatted_start_time %></td>
-            <td><%= p.formatted_end_time %></td>
-            <td>
-              <% if p.has_to_do_problem(@user.id) %>
-                  <%= link_to 'No', sendassignment_path(p.id, :usergroup => group.id) %>
-              <% else %>
-                  Yes!
-              <% end %>
-            </td>
-          </tr>
-
-      <% end %>
+          <% group.get_class_assignments.each do |p| %>
+              <tr>
+                <td><%= p.name %></td>
+                <td><%= p.description %></td>
+                <td><%= p.formatted_start_time %></td>
+                <td><%= p.formatted_end_time %></td>
+                <td>
+                <%=
+                  link_to_if(group.users_that_need_eval(group.get_assignment_id, group.id).size > 0,
+                     'Evaluate', sendassignment_path(p.id, :usergroup => group.id)) do
+                        label_tag('Completed')
+                  end
+                %>
+                </td>
+              </tr>
+          <% end %>
       </tbody>
     </table>
 

@@ -1,3 +1,65 @@
 // Place all the styles related to the Submissions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.te_form{
+  .sub_head_labels{
+    width: 100%;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 10px 0;
+    float: left;
+    border-bottom: 1px solid #cccccc;
+
+    label{
+      float: left;
+      margin: 0;
+      width: 25%;
+      font-weight: 600;
+    }
+
+    .data_label{
+      width: 70%;
+      font-weight: 100;
+      color: #777777;
+    }
+  }
+  .rating_answers {
+    float: left;
+    padding: 20px 0;
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: 20px;
+
+    label{
+      display: inline;
+      float: left;
+      width: 15%;
+      color: #999999;
+    }
+    .rating_head_label{
+      width: 100%;
+      margin-bottom: 10px;
+      color: #444444;
+    }
+    input[type=radio] {
+      display: inline;
+    }
+
+    .field{
+      float: left;
+      width: 100%;
+      padding: 5px 5px 0 5px;
+    }
+    .field:hover{
+        background-color: #E8EEEF;
+    }
+    .field:hover label{
+      color: #666666;
+    }
+    .field:hover .rating_head_label{
+      color: #444444;
+    }
+  }
+}

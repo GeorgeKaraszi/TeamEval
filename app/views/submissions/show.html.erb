@@ -1,33 +1,59 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Active class:</strong>
-  <%= @submission.get_active_class %>
-</p>
-
-<p>
-  <strong>Group:</strong>
-  <%= @submission.get_group_information %>
-</p>
-
-<p>
   <strong>User:</strong>
   <%= @submission.get_user_information %>
 </p>
 
 <p>
+  <strong>Active class:</strong>
+  <%= @submission.get_active_class.number %>
+</p>
+
+<p>
+  <strong>Team:</strong>
+  <%= @submission.get_team_name.name %>
+</p>
+
+
+<p>
   <strong>Assignment:</strong>
-  <%= @submission.get_assignment_information %>
+  <%= @submission.get_assignment.name %>
 </p>
 
 <p>
-  <strong>Answer:</strong>
-  <%= @submission.answer %>
+  <strong>Target User:</strong>
+  <%= @submission.target_user.real_name %>
 </p>
 
 <p>
-  <strong>Complete:</strong>
-  <%= @submission.complete %>
+  <strong>Group URL:</strong>
+  <%= @submission.group_url %>
+</p>
+
+<p>
+  <strong>Answer1:</strong>
+  <%= @submission.answer1 %>
+</p>
+
+<p>
+  <strong>Answer2:</strong>
+  <%= @submission.answer2 %>
+</p>
+
+<p>
+  <strong>Answer3:</strong>
+  <%= @submission.answer3 %>
+</p>
+
+<p>
+  <strong>Answer4:</strong>
+  <%= @submission.answer4 %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @submission.comment %>
 </p>
 
 <%= link_to 'Edit', edit_submission_path(@submission) %> |

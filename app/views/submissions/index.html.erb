@@ -3,11 +3,11 @@
 <table>
   <thead>
   <tr>
-    <th>Active class</th>
-    <th>Group</th>
-    <th>User</th>
+    <th>Active User</th>
+    <th>Class Number</th>
+    <th>Team</th>
     <th>Assignment</th>
-    <th>Complete</th>
+    <th>Evaluated Student</th>
     <th colspan="3"></th>
   </tr>
   </thead>
@@ -15,11 +15,11 @@
   <tbody>
   <% @submissions.each do |submission| %>
       <tr>
-        <td><%= submission.get_active_class %></td>
-        <td><%= submission.get_group_information %></td>
         <td><%= submission.get_user_information %></td>
-        <td><%= submission.get_assignment_information %></td>
-        <td><%= submission.complete %></td>
+        <td><%= submission.get_active_class.number %></td>
+        <td><%= submission.get_team_name.name %></td>
+        <td><%= submission.get_assignment.name %></td>
+        <td><%= submission.target_user.real_name %></td>
         <td><%= link_to 'Show', submission %></td>
         <td><%= link_to 'Edit', edit_submission_path(submission) %></td>
         <td><%= link_to 'Destroy', submission, method: :delete, data: {confirm: 'Are you sure?'} %></td>

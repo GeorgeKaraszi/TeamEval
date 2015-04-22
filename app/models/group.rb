@@ -44,16 +44,19 @@ class Group < ActiveRecord::Base
     get_class_room.name + '(' + get_class_room.number + ')'
   end
 
-  def get_class_problems
-    get_class_room.get_class_problems
+  def get_class_assignments
+    Assignment.where(active_class_id: get_class_room.id)
   end
 
+  def get_assignment_id
+    current_assignment = Assignment.find_by(active_class_id: self.active_class_id)
+    current_assignment.id unless current_assignment.nil?
+  end
 
   def member_count
     Group.where(active_class_id: self.active_class_id,
                 team_name_id: self.team_name_id).size
   end
-
 
   private
 

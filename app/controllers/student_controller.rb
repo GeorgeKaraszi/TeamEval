@@ -5,6 +5,8 @@ class StudentController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_user
   before_action :set_groups
   rescue_from ActiveRecord::RecordNotFound, with: :not_in_group
+  before_action :set_submission
+  rescue_from ActiveRecord::RecordNotFound, with: :not_in_group
 
   def index
   end
@@ -17,6 +19,10 @@ class StudentController < ApplicationController
 
   def set_groups
     @groups = Group.where(user_id: @user.id)
+  end
+
+  def set_submission
+    @submission = Submission.find_by(user_id: session[:user_id])
   end
 
   def invalid_user
