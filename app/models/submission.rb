@@ -150,3 +150,5 @@ class Submission < ActiveRecord::Base
 
     User.find_by(id: group.user_id)
   end
+
+end

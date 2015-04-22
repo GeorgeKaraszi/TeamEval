@@ -25,6 +25,10 @@ class StudentController < ApplicationController
     @submission = Submission.find_by(user_id: session[:user_id])
   end
 
+  def set_submission
+    @submission = Submission.find_by(user_id: session[:user_id])
+  end
+
   def invalid_user
     logger.error("Attempt to access invalid user #{params[:id]}")
     redirect_to(login_url, notice: 'Invalid user account')

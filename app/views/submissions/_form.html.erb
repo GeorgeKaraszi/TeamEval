@@ -37,7 +37,7 @@
         </div>
         <div class="field">
           <%= f.label :target_user_id, 'Who to eval:' %> <br>
-          <%= f.collection_select :target_user_id, @submission.users_that_need_eval(@submission.get_assignment.id, @user.id), :id, :real_name %>
+          <%= f.collection_select :target_user_id, @submission.users_that_need_eval(@assignment.id, @user.id), :id, :real_name %>
         </div>
         <div class="field">
           <%= f.label :group_url, 'Url to project' %><br>
@@ -71,10 +71,11 @@
         </div>
         <div class="field">
           <%= f.label :answer4, 'What percentage of project did this member contribute?' %><br>
-          <label> Percentage distributed to others: <%= @submission.contribute_tally(@submission.get_assignment.id, @user.id ) %> %</label>
+          <label> Percentage distributed to others: <%= @submission.contribute_tally(@assignment.id, @user.id) %>
+            %</label>
           <%=
-              if @submission.users_that_need_eval(@submission.get_assignment.id, @submission.get_current_group.id).size == 1
-                f.text_field :answer4, value: @submission.tally_remainder(@submission.get_assignment.id, @user.id), :readonly => true
+              if @submission.users_that_need_eval(@assignment.id, @submission.get_current_group.id).size == 1
+                f.text_field :answer4, value: @submission.tally_remainder(@assignment.id, @user.id), :readonly => true
               else
                 f.text_field :answer4
               end

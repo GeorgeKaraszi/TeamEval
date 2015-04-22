@@ -2,6 +2,7 @@ class SubmissionsController < ApplicationController
   before_action :authorize
 
   before_action :set_user
+  before_action :set_assignment, only: [:new]
   before_action :set_submission, only: [:show, :edit, :update, :destroy]
 
   # GET /submissions
@@ -84,6 +85,10 @@ class SubmissionsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_submission
     @submission = Submission.find(params[:id])
+  end
+
+  def set_assignment
+    @assignment = Assignment.find_by(id: self.assignment_id)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
