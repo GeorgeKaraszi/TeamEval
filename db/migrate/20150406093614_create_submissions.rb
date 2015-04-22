@@ -6,7 +6,7 @@ class CreateSubmissions < ActiveRecord::Migration
       t.references :team_name, index: true
       t.references :user, index: true
       t.references :assignment, index: true
-      t.references :target_user, index: true
+      t.integer :target_user_id
       t.text :group_url
       t.integer :answer1
       t.integer :answer2

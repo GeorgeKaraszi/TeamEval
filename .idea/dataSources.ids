@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source name="Rails TeamEval: test" uuid="2a4100da-7db3-4f2a-b1dd-1a630cba90fd">
+  <data-source name="Rails TeamEval: test" uuid="cf13f247-cda2-407c-baf3-d7df2ff4eb38">
     <database-info product="SQLite" version="3.7.6.3" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native"/>
     <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed"/>
     <schema name="" catalog=""/>
@@ -52,7 +52,7 @@
       <primary-key columns="id"/>
     </table>
   </data-source>
-  <data-source name="Rails TeamEval: development" uuid="10bf78d6-13e2-4514-9083-f6f58d0485d9">
+  <data-source name="Rails TeamEval: development" uuid="9359f955-293a-4f29-a8f8-bf70506779fe">
     <database-info product="SQLite" version="3.7.6.3" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native"/>
     <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed"/>
     <schema name="" catalog=""/>
@@ -115,7 +115,6 @@
       <column name="created_at" sqlType="DATETIME" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
       <column name="updated_at" sqlType="DATETIME" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
       <primary-key columns="id"/>
-      <index name="index_submissions_on_target_user_id" unique="true" columns="target_user_id"/>
       <index name="index_submissions_on_assignment_id" unique="true" columns="assignment_id"/>
       <index name="index_submissions_on_user_id" unique="true" columns="user_id"/>
       <index name="index_submissions_on_team_name_id" unique="true" columns="team_name_id"/>
@@ -140,7 +139,7 @@
       <primary-key columns="id"/>
     </table>
   </data-source>
-  <data-source name="Rails TeamEval: test" uuid="d09d50f4-845d-4063-a4f1-1c6262297543">
+  <data-source name="Rails TeamEval: test" uuid="d424377f-90f0-4cf2-8108-5a0616afde9d">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
 </component>

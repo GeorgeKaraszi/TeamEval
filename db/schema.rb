@@ -67,7 +67,6 @@ ActiveRecord::Schema.define(version: 20150420194018) do
   add_index "submissions", ["active_class_id"], name: "index_submissions_on_active_class_id"
   add_index "submissions", ["assignment_id"], name: "index_submissions_on_assignment_id"
   add_index "submissions", ["group_id"], name: "index_submissions_on_group_id"
-  add_index "submissions", ["target_user_id"], name: "index_submissions_on_target_user_id"
   add_index "submissions", ["team_name_id"], name: "index_submissions_on_team_name_id"
   add_index "submissions", ["user_id"], name: "index_submissions_on_user_id"
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1936616684">
-    <data-source source="LOCAL" name="Rails TeamEval: test" uuid="2a4100da-7db3-4f2a-b1dd-1a630cba90fd">
+  <component name="DataSourceManagerImpl" format="xml" hash="2685325514">
+    <data-source source="LOCAL" name="Rails TeamEval: test" uuid="cf13f247-cda2-407c-baf3-d7df2ff4eb38">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
@@ -15,21 +15,14 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="Rails TeamEval: development" uuid="10bf78d6-13e2-4514-9083-f6f58d0485d9">
+    <data-source source="LOCAL" name="Rails TeamEval: development" uuid="9359f955-293a-4f29-a8f8-bf70506779fe">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\Caleb\RubymineProjects\TeamEvaluation\db\development.sqlite3</jdbc-url>
-      <libraries>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/xerial-sqlite-license.txt</url>
-        </library>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/sqlite-jdbc-3.7.6.3-20110609.081603-3.jar</url>
-        </library>
-      </libraries>
+      <jdbc-url>jdbc:sqlite:C:\Users\George\Desktop\Ruby Projects\TeamEval\db\development.sqlite3</jdbc-url>
+      <libraries />
     </data-source>
-    <data-source source="LOCAL" name="Rails TeamEval: test" uuid="d09d50f4-845d-4063-a4f1-1c6262297543">
+    <data-source source="LOCAL" name="Rails TeamEval: test" uuid="d424377f-90f0-4cf2-8108-5a0616afde9d">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>

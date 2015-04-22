@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get 'start_class' => 'active_classes#new'
   get 'test' => 'submissions#test'
 
-
   controller :submissions do
     get ':id/sub_assignment', to: :new, as: 'sendassignment'
     post ':id/sub_assignment', to: :create

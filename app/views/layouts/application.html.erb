@@ -18,14 +18,12 @@
       <% else %>
           <% if @user.isStudent %>
               <li><%= link_to('Home | View Classes', student_portal_path) %> </li>
-              <li><%= link_to('Join Group', groups_path) %> </li>
-              <li><%= link_to('Submit Assignment', submissions_path) %>< /li>
+              <li><%= link_to('Join Group', group_path(:new)) %> </li>
               <li><%= link_to('Logout', logout_path, method: :delete) %>< /li>
           <% else %>
               <% if @user.isInstructor %>
                   <li><%= link_to('My Classes', instructor_portal_url, method: :get) %> </li>
-                  <li><%= link_to('Create New Problem', root_path) %> </li>
-                  <li><%= link_to('Create Class', start_class_path) %> </li>
+                  <li><%= link_to('Create Class', start_class_path(:new)) %> </li>
                   <li><%= link_to('Logout', logout_path, method: :delete) %> </li>
               <% else %>
                   <% if @user.isAdmin %>

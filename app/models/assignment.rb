@@ -8,8 +8,26 @@ class Assignment < ActiveRecord::Base
   validate :active_class_exists, :end_not_before_start, :start_time_not_before_current_date, :on => [:create, :update]
 
 
+  def self.GetQuery(a_id)
+    Assignment.find_by(a_id)
+  end
+
   def get_class_name
     ActiveClass.find_by(id: self.active_class_id).name
+  end
+
+  def get_class(class_id)
+
+    local_class = ActiveClass.where(id: class_id)
+
+    if local_class.nil?
+      return @Class_Current
+    end
+
+    @Class_Current = local_class
+
+    return local_class
+
   end
 
   def formatted_start_time

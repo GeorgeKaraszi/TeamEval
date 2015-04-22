@@ -24,7 +24,7 @@
         </div>
         <div class="field">
           <%= f.label :active_class_id %><br>
-          <%= f.collection_select :active_class_id, ActiveClass.all, :id, :name, {:prompt => 'Select User'} %>
+          <%= f.collection_select :active_class_id, ActiveClass.where(id: @class), :id, :name %>
         </div>
         <div class="field">
           <%= f.label :start_time %><br>

@@ -28,7 +28,7 @@ class ActiveClassesController < ApplicationController
 
     respond_to do |format|
       if @active_class.save
-        format.html { redirect_to @active_class, notice: 'Active class was successfully created.' }
+        format.html { redirect_to instructor_portal_path, notice: 'Active class was successfully created.' }
         format.json { render :show, status: :created, location: @active_class }
       else
         format.html { render :new }

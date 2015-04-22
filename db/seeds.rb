@@ -49,3 +49,49 @@ ActiveClass.create!(name: 'Test Class 2',
                     number: 'B123',
                     user_id: 4)
 
+Group.create!(user_id: 1,
+              team_name_id: 1,
+              active_class_id: 1)
+Group.create!(user_id: 2,
+              team_name_id: 1,
+              active_class_id: 1)
+Group.create!(user_id: 5,
+              team_name_id: 1,
+              active_class_id: 1)
+
+
+Assignment.create!(name: 'Test Assignment',
+                   description: 'This is some bullshit',
+                   active_class_id: 1,
+                   start_time: Time.now,
+                   end_time: Time.now)
+Assignment.create!(name: 'Another Problem',
+                   description: 'This is some bullshit once again hahaha',
+                   active_class_id: 1,
+                   start_time: Time.now,
+                   end_time: Time.now)
+
+Submission.create!(active_class_id: 1,
+                   user_id: 1,
+                   group_id: 1,
+                   team_name_id: 1,
+                   assignment_id: 1,
+                   target_user_id: 1,
+                   group_url: 'www.google.com',
+                   answer1: 3,
+                   answer2: 4,
+                   answer3: 4,
+                   answer4: 50,
+                   comment: 'nothing')
+Submission.create!(active_class_id: 1,
+                   user_id: 1,
+                   group_id: 1,
+                   team_name_id: 1,
+                   assignment_id: 1,
+                   target_user_id: 2,
+                   group_url: 'www.SomeGuyUrl.com',
+                   answer1: 3,
+                   answer2: 4,
+                   answer3: 4,
+                   answer4: 50,
+                   comment: 'nothing')

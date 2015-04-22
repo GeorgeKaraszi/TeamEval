@@ -3,7 +3,6 @@ class Submission < ActiveRecord::Base
   belongs_to :group
   belongs_to :user
   belongs_to :assignment
-  belongs_to :target_user_id, :class_name => 'User'
 
   validates :answer1, presence: true
   #validate :form_is_completely_filled, :on => [:create, :update]

@@ -1,6 +1,6 @@
 class AssignmentsController < ApplicationController
   before_action :set_assignment, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_class, only: [:new]
   # GET /assignments
   # GET /assignments.json
   def index
@@ -24,12 +24,14 @@ class AssignmentsController < ApplicationController
   # POST /assignments
   # POST /assignments.json
   def create
+    ass_params = assignment_params
     @assignment = Assignment.new(assignment_params)
     @time_created = Time.zone.now
+    @class = ActiveClass.where(id: ass_params[:active_class_id])
 
     respond_to do |format|
       if @assignment.save
-        format.html { redirect_to @assignment, notice: 'Assignment was successfully created.' }
+        format.html { redirect_to instructor_portal_path, notice: 'Assignment was successfully created.' }
         format.json { render :show, status: :created, location: @assignment }
       else
         format.html { render :new }
@@ -63,6 +65,11 @@ class AssignmentsController < ApplicationController
   end
 
   private
+
+  def set_class
+    @class = ActiveClass.where(id: params[:currentClass])
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_assignment
     @assignment = Assignment.find(params[:id])
