@@ -10,6 +10,50 @@ class Submission < ActiveRecord::Base
   public
 
 
+  #Static method
+
+  def self.number_of_groups_completed(problem_id)
+    problem = Assignment.find(problem_id)
+    team_list = Group.get_team_list(problem.active_class_id)
+    total_competed = 0
+    member_needs_to_complete = 0
+
+    team_list.each do |team|
+      member_list = Group.get_user_list(problem.active_class_id, team)
+
+      member_list.each do |member|
+        if problem.has_to_do_problem(member.id)
+          member_needs_to_complete += 1
+        end
+      end
+
+      if member_needs_to_complete == 0
+        total_competed += 1
+      end
+
+      member_needs_to_complete = 0
+
+    end
+
+    return total_competed
+  end
+
+  def self.get_average_answer(user_id, problem_id, answer)
+    query_results = Submission.where(assignment_id: problem_id, target_user_id: user_id).pluck(answer)
+    total_sum = 0
+
+    query_results.each do |a|
+      total_sum += a
+    end
+
+    unless total_sum == 0
+      return total_sum/query_results.size
+    end
+
+    return 0
+  end
+
+
   def contribute_tally(ass_id, group_id)
     user = get_user_from_group(group_id)
 
@@ -26,7 +70,7 @@ class Submission < ActiveRecord::Base
   end
 
   def users_that_need_eval(ass_id, group_id)
-    target_group = Group.find_by(group_id.to_i)
+    target_group = Group.find(group_id.to_i)
 
     users_evaluated = Submission.where(user_id: target_group.user_id,
                                        assignment_id: ass_id).pluck(:target_user_id)

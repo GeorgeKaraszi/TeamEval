@@ -5,15 +5,24 @@ class InstructorController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_user
   before_action :set_class
   rescue_from ActiveRecord::RecordNotFound, with: :not_in_class
+  before_action :set_assignment, only: [:as_summery]
 
   def index
   end
 
   def group_list
+  end
+
+  def as_summery
 
   end
 
   private
+
+  def set_assignment
+    @assignment = Assignment.find(params[:id])
+  end
+
   def set_user
     @user = User.find_by(id: session[:user_id])
   end

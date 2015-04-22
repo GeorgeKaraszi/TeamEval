@@ -38,9 +38,11 @@ class Assignment < ActiveRecord::Base
     end_time.strftime('%m/%d (%I:%m%p)')
   end
 
-  def has_to_do_problem(group_id)
-    group = Group.find_by_id(group_id)
-    amount = Submission.where(active_class_id: self.active_class_id,
+  def has_to_do_problem(user_id)
+    group = Group.find_by(user_id: user_id,
+                          active_class_id: self.active_class_id)
+    amount = Submission.where(user_id: user_id,
+                              active_class_id: self.active_class_id,
                               team_name_id: group.team_name_id,
                               assignment_id: self.id).size
 

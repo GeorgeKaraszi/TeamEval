@@ -7,7 +7,7 @@
       <tr>
         <b>Class:</b> <%= cc.get_class_info %> <br>
         <%= link_to('Student list', "#group-#{cc.id}-expand", class: 'popup-modal') %> <br>
-        <%= link_to('Group summery', "#group-#{cc.id}", class: 'popup-modal') %> <br>
+        <%= link_to('Group as_summery', "#group-#{cc.id}", class: 'popup-modal') %> <br>
         <%= link_to('Create Assignment', assignment_path(:new, :currentClass => cc.id)) %>
       </tr>
 
@@ -27,17 +27,14 @@
             <td><%= p.description %></td>
             <td><%= p.formatted_start_time %></td>
             <td><%= p.formatted_end_time %></td>
-            <td>0</td>
-            <td><%= link_to('Summery', "#problem-#{p.id}", class: 'popup-modal') %></td>
+            <td><%= Submission.number_of_groups_completed(p.id) %></td>
+            <td><%= link_to('Summery', as_summery_path(id: p.id)) %></td>
           </tr>
-          <div id="problem-<%= p.id %>" class="mfp-hide white-popup">
-            <p><a class="popup-modal-dismiss" href="#">Close</a></p>
-            <%= render :partial => 'assign_summery',
-                       :locals => {:assignment_id => p.id} %>
-          </div>
       <% end %>
       </tbody>
     </table>
+
+    </div>
 
 
     <div id="group-<%= cc.id %>" class="mfp-hide white-popup">

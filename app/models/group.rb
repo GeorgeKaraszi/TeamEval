@@ -11,6 +11,20 @@ class Group < ActiveRecord::Base
   validates_uniqueness_of :user_id, :scope => :active_class_id,
                           message: 'already belongs to a group in this class'
 
+  #Static method
+  def self.get_team_list(a_class_id)
+    Group.where(active_class_id: a_class_id).uniq.pluck(:team_name_id)
+  end
+
+  #Static method
+  def self.get_user_list(a_class_id, team_name_id)
+    user_id_list = Group.where(active_class_id: a_class_id,
+                               team_name_id: team_name_id).pluck(:user_id)
+
+    User.where(id: user_id_list)
+
+  end
+
 
   def get_user_information
     user = User.find_by(id: self.user_id)
@@ -39,6 +53,7 @@ class Group < ActiveRecord::Base
     Group.where(active_class_id: self.active_class_id,
                 team_name_id: self.team_name_id).size
   end
+
 
   private
 

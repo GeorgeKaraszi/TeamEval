@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'student_portal' => 'student#index'
   get 'start_class' => 'active_classes#new'
   get 'test' => 'submissions#test'
+  get 'as_summery' => 'instructor#as_summery'
+
 
   controller :submissions do
     get ':id/sub_assignment', to: :new, as: 'sendassignment'

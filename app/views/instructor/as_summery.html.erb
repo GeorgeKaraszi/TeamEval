@@ -1,0 +1,33 @@
+<h1>Assignment Summery <%= @assignment.id %></h1>
+
+<% team_list = Group.where(active_class_id: @assignment.active_class_id).uniq.pluck(:team_name_id) %>
+
+<% team_list.each do |team| %>
+    <table>
+      <thead>
+      <tr>
+        <th>User</th>
+        <th>URL</th>
+        <th>A1</th>
+        <th>A2</th>
+        <th>A3</th>
+        <th>A4</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% Group.get_user_list(@assignment.active_class_id, team).each do |user| %>
+          <tr>
+            <td><%= user.real_name %></td>
+            <td>google.com</td>
+            <td><%= Submission.get_average_answer(user.id, @assignment.id, :answer1) %></td>
+            <td><%= Submission.get_average_answer(user.id, @assignment.id, :answer2) %></td>
+            <td><%= Submission.get_average_answer(user.id, @assignment.id, :answer3) %></td>
+            <td><%= Submission.get_average_answer(user.id, @assignment.id, :answer4) %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>
+
+<%= link_to('Back', instructor_portal_path) %>

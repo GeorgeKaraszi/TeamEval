@@ -28,10 +28,10 @@
             <td><%= p.formatted_start_time %></td>
             <td><%= p.formatted_end_time %></td>
             <td>
-              <% if p.has_to_do_problem(group.id) %>
-                  <%= link_to 'Yes', sendassignment_path(p.id, :usergroup => group.id) %>
+              <% if p.has_to_do_problem(@user.id) %>
+                  <%= link_to 'No', sendassignment_path(p.id, :usergroup => group.id) %>
               <% else %>
-                  No
+                  Yes!
               <% end %>
             </td>
           </tr>
