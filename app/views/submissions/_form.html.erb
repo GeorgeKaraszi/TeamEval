@@ -28,6 +28,7 @@
             <%= f.label :group_id, 'Team:' %>
             <%= f.label :group_id, @submission.get_team_name.name, class: 'data_label' %>
             <%= f.hidden_field :group_id, :value => @submission.get_current_group.id %>
+            <%= f.hidden_field :team_name_id, :value => @submission.get_team_name.id %>
           </div>
           <div class="field">
             <%= f.label :assignment_id, 'Assignment:' %>

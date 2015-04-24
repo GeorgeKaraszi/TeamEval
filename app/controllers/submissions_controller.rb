@@ -40,11 +40,13 @@ class SubmissionsController < ApplicationController
   # POST /submissions.json
   def create
     @submission = Submission.new(submission_params)
+    @assignment = Assignment.find(@submission.assignment_id)
+    @user = User.find(@submission.user_id)
 
     respond_to do |format|
       if @submission.save
-        format.html { redirect_to @submission, notice: 'Submission was successfully created.' }
-        format.json { render :show, status: :created, location: @submission }
+        format.html { redirect_to student_portal_path, notice: 'Submission was successfully created.' }
+        format.json { render :index, status: :created, location: student_portal_path }
       else
         format.html { render :new }
         format.json { render json: @submission.errors, status: :unprocessable_entity }
@@ -57,7 +59,7 @@ class SubmissionsController < ApplicationController
   def update
     respond_to do |format|
       if @submission.update(submission_params)
-        format.html { redirect_to @submission, notice: 'Submission was successfully updated.' }
+        format.html { redirect_to student_portal_path, notice: 'Submission was successfully updated.' }
         format.json { render :show, status: :ok, location: @submission }
       else
         format.html { render :edit }
@@ -88,7 +90,7 @@ class SubmissionsController < ApplicationController
   end
 
   def set_assignment
-    @assignment = Assignment.find_by(id: self.assignment_id)
+    @assignment = Assignment.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

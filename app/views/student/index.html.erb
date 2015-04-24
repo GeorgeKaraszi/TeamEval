@@ -11,7 +11,7 @@
       <tr>
         <b>Group:</b> <%= group.get_team_name %>
       </tr>
-      <% unless group.get_class_assignments.size == 0 then %>
+      <% if group.get_class_assignments.size != 0 %>
           <tr>
             <b>Evaluations Left:</b> <%= evaluation_total %>
           </tr>
@@ -39,12 +39,11 @@
                 <td><%= p.formatted_end_time %></td>
                 <td>
                 <%=
-                    link_to_if(@submission.users_that_need_eval(p.id, group.id).size > 0,
+                    link_to_if(p.has_to_do_problem(@user.id),
                      'Evaluate', sendassignment_path(p.id, :usergroup => group.id)) do
                         label_tag('Completed')
                   end
                 %>
-                  <% evaluation_total += @submission.users_that_need_eval(p.id, group.id).size %>
                 </td>
               </tr>
           <% end %>
