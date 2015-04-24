@@ -1,8 +1,10 @@
 class SubmissionsController < ApplicationController
   before_action :authorize
 
+
   before_action :set_user
-  before_action :set_assignment, only: [:new]
+  before_action :set_assignment, only: [:new, :create]
+  before_action :check_expired_assignment, only: [:new, :create]
   before_action :set_submission, only: [:show, :edit, :update, :destroy]
 
   # GET /submissions
@@ -29,7 +31,8 @@ class SubmissionsController < ApplicationController
   # GET /submissions/new
   def new
     @submission = Submission.new
-    @submission.user = User.find_by(id: session[:user_id])
+    @submission.user = @user
+    @submission.assignment = @assignment
   end
 
   # GET /submissions/1/edit
@@ -40,12 +43,10 @@ class SubmissionsController < ApplicationController
   # POST /submissions.json
   def create
     @submission = Submission.new(submission_params)
-    @assignment = Assignment.find(@submission.assignment_id)
-    @user = User.find(@submission.user_id)
 
     respond_to do |format|
       if @submission.save
-        format.html { redirect_to student_portal_path, notice: 'Submission was successfully created.' }
+        format.html { redirect_to student_portal_path, notice: "Successfully Evaluated #{@submission.target_user.real_name}!" }
         format.json { render :index, status: :created, location: student_portal_path }
       else
         format.html { render :new }
@@ -90,7 +91,24 @@ class SubmissionsController < ApplicationController
   end
 
   def set_assignment
-    @assignment = Assignment.find(params[:id])
+    assignment_id = nil
+
+    if params[:id].nil?
+      assignment_id = params[:submission][:assignment_id]
+    else
+      assignment_id = params[:id]
+    end
+
+    @assignment = Assignment.find(assignment_id)
+  end
+
+
+  def check_expired_assignment
+
+    if @assignment.expired_time
+      redirect_to student_portal_path, notice: 'Assignment has expired'
+    end
+
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

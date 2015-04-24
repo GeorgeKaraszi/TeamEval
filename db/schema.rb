@@ -14,9 +14,9 @@
 ActiveRecord::Schema.define(version: 20150420194018) do
 
   create_table "active_classes", force: true do |t|
-    t.string "name"
-    t.string "number"
-    t.integer "user_id"
+    t.string   "name"
+    t.string   "number"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(version: 20150420194018) do
   add_index "active_classes", ["user_id"], name: "index_active_classes_on_user_id"
 
   create_table "assignments", force: true do |t|
-    t.string "name"
-    t.text "description"
-    t.integer "active_class_id"
+    t.string   "name"
+    t.text     "description"
+    t.integer  "active_class_id"
     t.datetime "start_time"
     t.datetime "end_time"
     t.datetime "created_at"
@@ -36,9 +36,9 @@ ActiveRecord::Schema.define(version: 20150420194018) do
   add_index "assignments", ["active_class_id"], name: "index_assignments_on_active_class_id"
 
   create_table "groups", force: true do |t|
-    t.integer "user_id"
-    t.integer "team_name_id"
-    t.integer "active_class_id"
+    t.integer  "user_id"
+    t.integer  "team_name_id"
+    t.integer  "active_class_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -48,18 +48,18 @@ ActiveRecord::Schema.define(version: 20150420194018) do
   add_index "groups", ["user_id"], name: "index_groups_on_user_id"
 
   create_table "submissions", force: true do |t|
-    t.integer "active_class_id"
-    t.integer "group_id"
-    t.integer "team_name_id"
-    t.integer "user_id"
-    t.integer "assignment_id"
-    t.integer "target_user_id"
-    t.text "group_url"
-    t.integer "answer1"
-    t.integer "answer2"
-    t.integer "answer3"
-    t.integer "answer4"
-    t.text "comment"
+    t.integer  "active_class_id"
+    t.integer  "group_id"
+    t.integer  "team_name_id"
+    t.integer  "user_id"
+    t.integer  "assignment_id"
+    t.integer  "target_user_id"
+    t.text     "group_url"
+    t.integer  "answer1"
+    t.integer  "answer2"
+    t.integer  "answer3"
+    t.integer  "answer4"
+    t.text     "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -71,16 +71,16 @@ ActiveRecord::Schema.define(version: 20150420194018) do
   add_index "submissions", ["user_id"], name: "index_submissions_on_user_id"
 
   create_table "team_names", force: true do |t|
-    t.string "name"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
-    t.string "username", limit: 20
-    t.string "password_digest"
-    t.string "real_name", limit: 100
-    t.integer "id_type", default: 1
+    t.string   "username",        limit: 20
+    t.string   "password_digest"
+    t.string   "real_name",       limit: 100
+    t.integer  "id_type",                     default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end

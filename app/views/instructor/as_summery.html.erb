@@ -19,7 +19,7 @@
       <% Group.get_user_list(@assignment.active_class_id, team).each do |user| %>
           <tr>
             <td><%= user.real_name %></td>
-            <td>google.com</td>
+            <td><%= Submission.get_group_url(team, @assignment.id) %></td>
             <td><%= Submission.get_average_answer(user.id, @assignment.id, :answer1) %></td>
             <td><%= Submission.get_average_answer(user.id, @assignment.id, :answer2) %></td>
             <td><%= Submission.get_average_answer(user.id, @assignment.id, :answer3) %></td>

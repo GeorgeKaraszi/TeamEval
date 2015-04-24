@@ -32,8 +32,8 @@
           </div>
           <div class="field">
             <%= f.label :assignment_id, 'Assignment:' %>
-            <%= f.label :assignment_id, @submission.get_assignment.name, class: 'data_label' %>
-            <%= f.hidden_field :assignment_id, :value => @submission.get_assignment.id %>
+            <%= f.label :assignment_id, @submission.assignment.name, class: 'data_label' %>
+            <%= f.hidden_field :assignment_id, :value => @submission.assignment.id %>
           </div>
         </div>
         <div class="field">

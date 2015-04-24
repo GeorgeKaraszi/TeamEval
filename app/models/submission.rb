@@ -40,6 +40,15 @@ class Submission < ActiveRecord::Base
     return total_competed
   end
 
+
+  def self.get_group_url(team_id, problem_id)
+    query = Submission.find_by(team_name_id: team_id, assignment_id: problem_id)
+
+    return query.group_url unless query.nil?
+
+    return 'N/A'
+  end
+
   def self.get_average_answer(user_id, problem_id, answer)
     query_results = Submission.where(assignment_id: problem_id, target_user_id: user_id).pluck(answer)
     total_sum = 0

@@ -16,20 +16,6 @@ class Assignment < ActiveRecord::Base
     ActiveClass.find_by(id: self.active_class_id).name
   end
 
-  def get_class(class_id)
-
-    local_class = ActiveClass.where(id: class_id)
-
-    if local_class.nil?
-      return @Class_Current
-    end
-
-    @Class_Current = local_class
-
-    return local_class
-
-  end
-
   def formatted_start_time
     start_time.strftime('%m/%d (%I:%m%p)')
   end
@@ -37,6 +23,13 @@ class Assignment < ActiveRecord::Base
   def formatted_end_time
     end_time.strftime('%m/%d (%I:%m%p)')
   end
+
+
+  def expired_time
+    return true unless self.end_time.to_datetime >= Time.now
+    false
+  end
+
 
   def has_to_do_problem(user_id)
     group = Group.find_by(user_id: user_id,

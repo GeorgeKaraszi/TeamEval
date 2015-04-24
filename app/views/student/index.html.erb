@@ -1,6 +1,6 @@
 <% evaluation_total = 0 %>
 <h1>Welcome Back <%= @user.real_name %></h1>
-
+<p id="notice"><%= notice %></p>
 
 <% @groups.each do |group| %>
     <table>
@@ -38,12 +38,21 @@
                 <td><%= p.formatted_start_time %></td>
                 <td><%= p.formatted_end_time %></td>
                 <td>
-                <%=
-                    link_to_if(p.has_to_do_problem(@user.id),
-                     'Evaluate', sendassignment_path(p.id, :usergroup => group.id)) do
+                  <%=
+                      if !p.expired_time
+                        link_to_if(p.has_to_do_problem(@user.id),
+                                   'Evaluate', sendassignment_path(p.id, :usergroup => group.id)) do
+                          label_tag('Completed')
+                        end
+                      else
+                        if p.has_to_do_problem(@user.id)
+                          label_tag('Expired')
+                        else
                         label_tag('Completed')
-                  end
+                        end
+                      end
                 %>
+
                 </td>
               </tr>
           <% end %>
