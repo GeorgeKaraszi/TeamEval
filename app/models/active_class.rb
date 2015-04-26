@@ -36,6 +36,9 @@ class ActiveClass < ActiveRecord::Base
     Assignment.where(active_class_id: self.id)
   end
 
+  def self.get_class_list(user_id)
+    ActiveClass.where(user_id: user_id)
+  end
 
   private
   def ensure_user_id_is_instructor

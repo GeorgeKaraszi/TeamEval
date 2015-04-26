@@ -1,0 +1,18 @@
+<div class="te_form">
+  <fieldset>
+    <legend>Upload Student Information</legend>
+    <%= form_tag upload_student_path, :multipart => true do %>
+        <div class="field">
+          <label for="file">Upload text File</label> <%= file_field_tag "file" %> <br/> <br/>
+        </div>
+        <div class="field">
+          <%= label :active_class_id, 'Select Class:' %><br>
+          <%= collection_select :class, :active_class_id, ActiveClass.get_class_list(@user.id), :id, :name %>
+        </div>
+
+        <div class="field">
+          <%= submit_tag 'Upload File' %>
+        </div>
+    <% end %>
+  </fieldset>
+</div>

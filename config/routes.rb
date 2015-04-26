@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   get 'as_summery' => 'instructor#as_summery'
 
 
+  controller :users do
+    get 'upload_student', to: :upload_student
+    post 'upload_student', to: :new_upload_student
+  end
+
   controller :submissions do
     get ':id/sub_assignment', to: :new, as: 'sendassignment'
     post ':id/sub_assignment', to: :create
