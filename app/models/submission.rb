@@ -7,7 +7,7 @@ class Submission < ActiveRecord::Base
 
   validates :answer1, :answer2, :answer3, :answer4, presence: true
   validates :group_url, :format => URI::regexp(%w(http https))
-  validate :distribution_not_exceed_100, :on => [:new, :update]
+  validate :distribution_not_exceed_100, :on => [:create, :update], :if => [:answer4, presence: true]
 
   public
 
